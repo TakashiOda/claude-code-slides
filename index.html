@@ -306,6 +306,91 @@
       color: #667eea;
     }
 
+    /* Comparison table */
+    .compare-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-top: 12px;
+      font-size: 0.55em;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .compare-table th {
+      padding: 10px 14px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.05em;
+    }
+
+    .compare-table th:first-child {
+      background: rgba(255, 255, 255, 0.08);
+      width: 22%;
+    }
+
+    .compare-table th.col-code {
+      background: rgba(102, 126, 234, 0.25);
+      color: #a4b4f7;
+      width: 39%;
+    }
+
+    .compare-table th.col-cowork {
+      background: rgba(118, 75, 162, 0.25);
+      color: #c9a4e8;
+      width: 39%;
+    }
+
+    .compare-table td {
+      padding: 8px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      vertical-align: top;
+      text-align: left;
+      line-height: 1.5;
+    }
+
+    .compare-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .compare-table td:first-child {
+      font-weight: 700;
+      color: #ddd;
+      background: rgba(255, 255, 255, 0.04);
+      text-align: center;
+    }
+
+    .compare-table tr:nth-child(even) td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .compare-table tr:nth-child(even) td:first-child {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.85em;
+      font-weight: 700;
+    }
+
+    .badge-strong {
+      background: rgba(67, 181, 129, 0.25);
+      color: #43b581;
+    }
+
+    .badge-weak {
+      background: rgba(255, 255, 255, 0.08);
+      color: #888;
+    }
+
+    .badge-mid {
+      background: rgba(245, 166, 35, 0.2);
+      color: #f5a623;
+    }
+
     /* Progress bar color */
     .reveal .progress span {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -325,7 +410,7 @@
 
       <!-- Slide 1: Claude Code vs Claude Cowork -->
       <section>
-        <div class="section-num">1 / 11</div>
+        <div class="section-num">1 / 12</div>
         <h2>&#x1F3E2; Claude Code と Claude Cowork の違い</h2>
         <p class="subtitle">「開発者向けの黒い画面」か、「誰でも使える便利アプリ」か</p>
         <div class="card-container">
@@ -342,9 +427,72 @@
         </div>
       </section>
 
-      <!-- Slide 2: Setup -->
+      <!-- Slide 2: Code vs Cowork Comparison -->
       <section>
-        <div class="section-num">2 / 11</div>
+        <div class="section-num">2 / 12</div>
+        <h2>&#x1F50D; できることの違いを徹底比較</h2>
+        <p class="subtitle">同じClaudeファミリーでも「得意分野」がまったく異なります</p>
+
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="col-code">&#x1F4BB; Claude Code</th>
+              <th class="col-cowork">&#x1F469;&#x200D;&#x1F4BC; Claude Cowork</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>操作方法</td>
+              <td>ターミナル / VS Code（コマンド入力）</td>
+              <td>デスクトップアプリ（チャットUI・マウス操作）</td>
+            </tr>
+            <tr>
+              <td>対象ユーザー</td>
+              <td>エンジニア・技術職</td>
+              <td>全職種（非エンジニアでもOK）</td>
+            </tr>
+            <tr>
+              <td>ファイル操作</td>
+              <td><span class="badge badge-strong">&#x25CE; 強い</span> 作成・編集・削除・一括処理を自律的に実行</td>
+              <td><span class="badge badge-strong">&#x25CE; 強い</span> デスクトップ上のファイル整理・分類・リネーム</td>
+            </tr>
+            <tr>
+              <td>コード実行</td>
+              <td><span class="badge badge-strong">&#x25CE; 強い</span> シェルコマンド・テスト・ビルドを直接実行</td>
+              <td><span class="badge badge-weak">&#x25B3;</span> コード実行環境なし（生成のみ）</td>
+            </tr>
+            <tr>
+              <td>Git / GitHub</td>
+              <td><span class="badge badge-strong">&#x25CE; 強い</span> commit, push, PR作成まで自動化</td>
+              <td><span class="badge badge-weak">&#x25B3;</span> 非対応</td>
+            </tr>
+            <tr>
+              <td>外部連携</td>
+              <td><span class="badge badge-strong">&#x25CE; 強い</span> MCP経由でSlack, DB, APIなど無限に拡張</td>
+              <td><span class="badge badge-mid">&#x25CB; 対応</span> デスクトップアプリ連携（メール, カレンダー等）</td>
+            </tr>
+            <tr>
+              <td>並列作業</td>
+              <td><span class="badge badge-strong">&#x25CE; 強い</span> サブエージェントで複数タスクを同時処理</td>
+              <td><span class="badge badge-weak">&#x25B3;</span> 基本は1タスクずつ</td>
+            </tr>
+            <tr>
+              <td>カスタマイズ</td>
+              <td><span class="badge badge-strong">&#x25CE; 強い</span> CLAUDE.md, Skills, Hooks で深くカスタム</td>
+              <td><span class="badge badge-mid">&#x25CB; 対応</span> プロジェクト指示でカスタム可能</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="tip-box" style="margin-top: 10px;">
+          <p>&#x1F4A1; <strong>選び方:</strong> 「作る・動かす・自動化する」→ <strong>Code</strong>　／　「整理する・調べる・まとめる」→ <strong>Cowork</strong>。両方使い分けるのがベスト！</p>
+        </div>
+      </section>
+
+      <!-- Slide 3: Setup -->
+      <section>
+        <div class="section-num">3 / 12</div>
         <h2>&#x2699;&#xFE0F; 最初の準備と設定方法</h2>
         <p class="subtitle">導入は驚くほど簡単。たった1行のコマンドで完了します。</p>
 
@@ -371,9 +519,9 @@
         </div>
       </section>
 
-      <!-- Slide 3: Directory -->
+      <!-- Slide 4: Directory -->
       <section>
-        <div class="section-num">3 / 11</div>
+        <div class="section-num">4 / 12</div>
         <h2>&#x1F4C1; ディレクトリ（フォルダ）の考え方</h2>
         <p class="subtitle">Claude Codeは「呼ばれた場所」で働きます。設定の有効範囲を理解しましょう。</p>
 
@@ -393,7 +541,7 @@
 
       <!-- Slide 4: Context -->
       <section>
-        <div class="section-num">4 / 11</div>
+        <div class="section-num">5 / 12</div>
         <h2>&#x1F9E0; コンテキストとは？（超重要）</h2>
         <p class="subtitle">AIが効率よく働くための「作業机の広さ」のことです。</p>
 
@@ -416,7 +564,7 @@
 
       <!-- Slide 5: CLAUDE.md -->
       <section>
-        <div class="section-num">5 / 11</div>
+        <div class="section-num">6 / 12</div>
         <h2>&#x1F4D6; CLAUDE.md とは？</h2>
         <p class="subtitle">配属初日の新入社員（Claude）に渡す「会社の就業規則・理念」です。</p>
 
@@ -440,7 +588,7 @@
 
       <!-- Slide 6: Skills -->
       <section>
-        <div class="section-num">6 / 11</div>
+        <div class="section-num">7 / 12</div>
         <h2>&#x1F4CB; Skills（スキル）とは？</h2>
         <p class="subtitle">作業机の引き出しに入っている「定型業務の手順書（マニュアル）」です。</p>
 
@@ -466,7 +614,7 @@
 
       <!-- Slide 7: Subagents -->
       <section>
-        <div class="section-num">7 / 11</div>
+        <div class="section-num">8 / 12</div>
         <h2>&#x1F465; サブエージェント（Subagents）とは？</h2>
         <p class="subtitle">社長（メインのClaude）が仕事を外注する「別室の専門家・コンサルタント」です。</p>
 
@@ -498,7 +646,7 @@
 
       <!-- Slide 8: Use Cases 1 -->
       <section>
-        <div class="section-num">8 / 11</div>
+        <div class="section-num">9 / 12</div>
         <h2>&#x1F4BC; 業種別 活用アイデア（1）</h2>
         <p class="subtitle">あなたの業界ではこんな使い方ができます</p>
 
@@ -544,7 +692,7 @@
 
       <!-- Slide 9: Use Cases 2 -->
       <section>
-        <div class="section-num">9 / 11</div>
+        <div class="section-num">10 / 12</div>
         <h2>&#x1F4BC; 業種別 活用アイデア（2）</h2>
         <p class="subtitle">非エンジニア職でもここまでできる</p>
 
@@ -590,7 +738,7 @@
 
       <!-- Slide 10: Use Cases 3 -->
       <section>
-        <div class="section-num">10 / 11</div>
+        <div class="section-num">11 / 12</div>
         <h2>&#x1F4BC; 業種別 活用アイデア（3）</h2>
         <p class="subtitle">バックオフィスこそAIの効果が出やすい領域</p>
 
@@ -636,7 +784,7 @@
 
       <!-- Slide 11: Summary -->
       <section>
-        <div class="section-num">11 / 11</div>
+        <div class="section-num">12 / 12</div>
         <h2>&#x1F3AF; まとめ 〜 AIで「仮想の会社」を構築する 〜</h2>
         <p class="subtitle">Claude Codeの機能を組み合わせることで、あなたは「経営者」になれます。</p>
 
