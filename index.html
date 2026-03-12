@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>15分でわかる！Claude Code完全活用ガイド</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
+
+    :root {
+      --r-main-font: 'Noto Sans JP', sans-serif;
+      --r-heading-font: 'Noto Sans JP', sans-serif;
+      --r-main-font-size: 28px;
+      --r-heading1-size: 1.8em;
+      --r-heading2-size: 1.4em;
+      --r-heading3-size: 1.1em;
+    }
+
+    .reveal {
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    .reveal h1, .reveal h2, .reveal h3 {
+      font-family: 'Noto Sans JP', sans-serif;
+      text-transform: none;
+      line-height: 1.4;
+    }
+
+    .reveal h1 {
+      font-size: 1.8em;
+    }
+
+    .reveal h2 {
+      font-size: 1.3em;
+      margin-bottom: 0.6em;
+    }
+
+    .reveal h3 {
+      font-size: 1.0em;
+    }
+
+    .reveal p, .reveal li {
+      font-size: 0.7em;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    .reveal ul {
+      margin-left: 0.5em;
+    }
+
+    .reveal li {
+      margin-bottom: 0.3em;
+    }
+
+    .reveal .slides section {
+      padding: 20px 40px;
+    }
+
+    /* Title slide */
+    .title-slide h1 {
+      font-size: 2.0em;
+      font-weight: 900;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.3em;
+    }
+
+    .title-slide p {
+      text-align: center;
+      font-size: 0.8em;
+      color: #aaa;
+    }
+
+    /* Card layout */
+    .card-container {
+      display: flex;
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .card {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: left;
+    }
+
+    .card h3 {
+      margin-bottom: 0.4em;
+      font-size: 0.9em;
+    }
+
+    .card p, .card li {
+      font-size: 0.6em;
+      color: #ccc;
+    }
+
+    .card.blue {
+      border-left: 4px solid #667eea;
+    }
+
+    .card.purple {
+      border-left: 4px solid #764ba2;
+    }
+
+    .card.green {
+      border-left: 4px solid #43b581;
+    }
+
+    .card.orange {
+      border-left: 4px solid #f5a623;
+    }
+
+    .card.red {
+      border-left: 4px solid #e74c3c;
+    }
+
+    /* Highlight box */
+    .highlight-box {
+      background: rgba(102, 126, 234, 0.15);
+      border: 1px solid rgba(102, 126, 234, 0.3);
+      border-radius: 12px;
+      padding: 16px 24px;
+      margin: 16px 0;
+      text-align: left;
+    }
+
+    .highlight-box p {
+      font-size: 0.65em;
+      margin: 0.2em 0;
+    }
+
+    .warning-box {
+      background: rgba(245, 166, 35, 0.15);
+      border: 1px solid rgba(245, 166, 35, 0.3);
+      border-radius: 12px;
+      padding: 16px 24px;
+      margin: 16px 0;
+      text-align: left;
+    }
+
+    .warning-box p, .warning-box li {
+      font-size: 0.65em;
+      margin: 0.2em 0;
+    }
+
+    .tip-box {
+      background: rgba(67, 181, 129, 0.15);
+      border: 1px solid rgba(67, 181, 129, 0.3);
+      border-radius: 12px;
+      padding: 16px 24px;
+      margin: 16px 0;
+      text-align: left;
+    }
+
+    .tip-box p {
+      font-size: 0.65em;
+      margin: 0.2em 0;
+    }
+
+    /* Code block */
+    .reveal pre {
+      width: 100%;
+      margin: 12px 0;
+    }
+
+    .reveal pre code {
+      font-size: 0.75em;
+      padding: 16px 20px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    /* Emoji icon */
+    .icon-large {
+      font-size: 2.5em;
+      margin-bottom: 0.2em;
+    }
+
+    /* Subtitle */
+    .subtitle {
+      color: #aaa;
+      font-size: 0.65em !important;
+      text-align: center !important;
+      margin-bottom: 1em;
+    }
+
+    /* Section number */
+    .section-num {
+      display: inline-block;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-size: 0.55em;
+      padding: 4px 16px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    /* Summary org chart */
+    .org-chart {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .org-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .org-item {
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 12px;
+      padding: 12px 20px;
+      font-size: 0.6em;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      min-width: 160px;
+      text-align: center;
+    }
+
+    .org-item.highlight {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+      border-color: rgba(102, 126, 234, 0.5);
+    }
+
+    .org-arrow {
+      font-size: 1.2em;
+      color: #667eea;
+    }
+
+    /* Footer */
+    .slide-footer {
+      position: absolute;
+      bottom: 16px;
+      right: 40px;
+      font-size: 0.4em;
+      color: #555;
+    }
+
+    /* Diagram styles */
+    .diagram-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .diagram-box {
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 12px;
+      padding: 16px 20px;
+      text-align: center;
+      font-size: 0.6em;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .diagram-arrow {
+      font-size: 1.5em;
+      color: #667eea;
+    }
+
+    /* Progress bar color */
+    .reveal .progress span {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Title Slide -->
+      <section class="title-slide">
+        <div class="icon-large">&#x1F680;</div>
+        <h1>15分でわかる！<br>Claude Code 完全活用ガイド</h1>
+        <p>AIを「ただのチャット相手」から「優秀な自律型チーム」へ</p>
+      </section>
+
+      <!-- Slide 1: Claude Code vs Claude Cowork -->
+      <section>
+        <div class="section-num">1 / 8</div>
+        <h2>&#x1F3E2; Claude Code と Claude Cowork の違い</h2>
+        <p class="subtitle">「開発者向けの黒い画面」か、「誰でも使える便利アプリ」か</p>
+        <div class="card-container">
+          <div class="card blue">
+            <h3>&#x1F4BB; Claude Code<br><small style="color:#667eea;">凄腕のハッカー・職人</small></h3>
+            <p><strong>特徴:</strong> ターミナル（黒い画面）やVS Codeなどのエディタで動く開発者向けツール。コードの生成、ファイルの作成・書き換え、テスト実行などを自律的に行います。</p>
+            <p><strong>得意技:</strong> システム開発、エラーの修正、環境構築など「作る」作業。</p>
+          </div>
+          <div class="card purple">
+            <h3>&#x1F469;&#x200D;&#x1F4BC; Claude Cowork<br><small style="color:#764ba2;">オフィスの超優秀な秘書</small></h3>
+            <p><strong>特徴:</strong> Claudeのデスクトップアプリに搭載された、チャット画面（GUI）で動く機能。非エンジニアでもマウス操作と自然言語で簡単に使えます。</p>
+            <p><strong>得意技:</strong> ファイル整理、メールの自動分類、データ集計など「事務・整理」作業。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 2: Setup -->
+      <section>
+        <div class="section-num">2 / 8</div>
+        <h2>&#x2699;&#xFE0F; 最初の準備と設定方法</h2>
+        <p class="subtitle">導入は驚くほど簡単。たった1行のコマンドで完了します。</p>
+
+        <div class="warning-box">
+          <p>&#x26A0;&#xFE0F; <strong>前提:</strong> Claudeの有料プラン（Pro, Maxなど）の契約が必要です。</p>
+        </div>
+
+        <div class="card-container">
+          <div class="card blue">
+            <h3>&#x1F34E; Mac</h3>
+            <p>ターミナルを開き、以下をコピペしてEnter:</p>
+            <pre><code>curl -fsSL https://claude.com/install.sh | sh</code></pre>
+          </div>
+          <div class="card purple">
+            <h3>&#x1FA9F; Windows</h3>
+            <p>PowerShellを開き、以下をコピペしてEnter:</p>
+            <pre><code>iwr https://claude.com/install.ps1 -useb | iex</code></pre>
+            <p style="font-size:0.55em; color:#888;">※事前にGit for Windowsが必要です</p>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <p>&#x1F4A1; <strong>使い方:</strong> 作業したいフォルダを開き、<code>claude</code> と入力してEnter。初回のみブラウザでログイン認証が行われます。</p>
+        </div>
+      </section>
+
+      <!-- Slide 3: Directory -->
+      <section>
+        <div class="section-num">3 / 8</div>
+        <h2>&#x1F4C1; ディレクトリ（フォルダ）の考え方</h2>
+        <p class="subtitle">Claude Codeは「呼ばれた場所」で働きます。設定の有効範囲を理解しましょう。</p>
+
+        <div class="card-container">
+          <div class="card blue">
+            <h3>&#x1F3E2; プロジェクト専用<br><small style="color:#667eea;">その部署だけのルール</small></h3>
+            <p><strong>場所:</strong> 作業フォルダ内の <code>.claude/</code> フォルダ</p>
+            <p><strong>特徴:</strong> 「このAプロジェクトの時だけはこのルールで動いてね」という設定を保存。チームメンバーに共有する際にも便利です。</p>
+          </div>
+          <div class="card purple">
+            <h3>&#x1F30D; 個人専用<br><small style="color:#764ba2;">あなた自身のマイルール</small></h3>
+            <p><strong>場所:</strong> PCの大元にある <code>~/.claude/</code> フォルダ</p>
+            <p><strong>特徴:</strong> 「どんなプロジェクトでも、私と作業する時は必ず日本語で話してね」といった、全プロジェクト共通の基本設定を置きます。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 4: Context -->
+      <section>
+        <div class="section-num">4 / 8</div>
+        <h2>&#x1F9E0; コンテキストとは？（超重要）</h2>
+        <p class="subtitle">AIが効率よく働くための「作業机の広さ」のことです。</p>
+
+        <div class="highlight-box">
+          <p>&#x1F4DD; <strong>コンテキスト = AIの短期記憶（ワーキングメモリ）</strong></p>
+          <p>会話履歴、読み込んだファイル、実行したコマンドなどをすべて「コンテキスト」という記憶領域に保持しながら作業します。</p>
+        </div>
+
+        <div class="warning-box">
+          <p>&#x26A0;&#xFE0F; <strong>問題（コンテキストの圧迫）</strong></p>
+          <p>作業机に書類を広げすぎると → <strong>「指示を忘れる」「動作が遅くなる」「適当な嘘をつく（ハルシネーション）」</strong></p>
+        </div>
+
+        <div class="tip-box">
+          <p>&#x1F4A1; <strong>対策</strong></p>
+          <p><code>/clear</code> &#x2026; 話題が変わったら机の書類を全部捨てて真っさらにする</p>
+          <p><code>/compact</code> &#x2026; 散らかった書類を「要約」して小さなメモ帳に圧縮する</p>
+        </div>
+      </section>
+
+      <!-- Slide 5: CLAUDE.md -->
+      <section>
+        <div class="section-num">5 / 8</div>
+        <h2>&#x1F4D6; CLAUDE.md とは？</h2>
+        <p class="subtitle">配属初日の新入社員（Claude）に渡す「会社の就業規則・理念」です。</p>
+
+        <div class="highlight-box">
+          <p>&#x1F4CB; プロジェクトのフォルダ直下に置く <code>CLAUDE.md</code> というテキストファイル。<br>Claudeは作業開始前に、<strong>必ず毎回</strong>このファイルを読み込みます。</p>
+        </div>
+
+        <div class="card green" style="margin-top: 16px;">
+          <h3>&#x270D;&#xFE0F; 書くべきこと</h3>
+          <ul>
+            <li>このプロジェクトの目的（What）</li>
+            <li>絶対に守ってほしいコーディングルールやデザイン規約（How）</li>
+            <li>やってはいけない禁止事項</li>
+          </ul>
+        </div>
+
+        <div class="warning-box">
+          <p>&#x26A0;&#xFE0F; <strong>注意:</strong> 毎回読み込まれるため、長すぎるとコンテキストを最初から圧迫します。<br><strong>本当に重要な基本ルールだけを短く書く（レス・イズ・モア）</strong>のがコツです。</p>
+        </div>
+      </section>
+
+      <!-- Slide 6: Skills -->
+      <section>
+        <div class="section-num">6 / 8</div>
+        <h2>&#x1F4CB; Skills（スキル）とは？</h2>
+        <p class="subtitle">作業机の引き出しに入っている「定型業務の手順書（マニュアル）」です。</p>
+
+        <div class="highlight-box">
+          <p>&#x1F4DA; よくやる作業（議事録の作成、コードレビュー、リサーチなど）の手順をまとめたファイル。</p>
+        </div>
+
+        <div class="card-container">
+          <div class="card green">
+            <h3>&#x2728; 特徴（魔法の引き出し）</h3>
+            <ul>
+              <li>人間が指示しなくても、Claudeが依頼内容を見て<strong>自動的に適切なマニュアルを取り出して実行</strong></li>
+              <li>普段は引き出しにしまってあるので、<strong>コンテキストを圧迫しない</strong></li>
+            </ul>
+          </div>
+          <div class="card orange">
+            <h3>&#x1F511; 作り方のコツ</h3>
+            <p>ファイル上部の <code>description</code>（説明）に<strong>「このマニュアルは〇〇の時に使います」</strong>と明確に書いておくことが最重要ポイント。</p>
+            <p>これにより、Claudeが正しいタイミングで自動選択できるようになります。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 7: Subagents -->
+      <section>
+        <div class="section-num">7 / 8</div>
+        <h2>&#x1F465; サブエージェント（Subagents）とは？</h2>
+        <p class="subtitle">社長（メインのClaude）が仕事を外注する「別室の専門家・コンサルタント」です。</p>
+
+        <div class="highlight-box">
+          <p>&#x1F9E0; メインのClaudeとは<strong>全く別の脳みそ（独立したコンテキスト）</strong>を持って動く、特化型のAIアシスタント。</p>
+        </div>
+
+        <div class="diagram-container">
+          <div class="diagram-box" style="border-color: #667eea;">
+            <div style="font-size:1.8em;">&#x1F468;&#x200D;&#x1F4BC;</div>
+            <div><strong>メインClaude</strong><br><small>作業机をキレイに保つ</small></div>
+          </div>
+          <div class="diagram-arrow">&#x27A1;&#xFE0F; 外注</div>
+          <div class="diagram-box" style="border-color: #764ba2;">
+            <div style="font-size:1.8em;">&#x1F575;&#xFE0F;</div>
+            <div><strong>サブエージェント</strong><br><small>別室で100ファイル調査</small></div>
+          </div>
+          <div class="diagram-arrow">&#x27A1;&#xFE0F; 要約だけ報告</div>
+          <div class="diagram-box" style="border-color: #43b581;">
+            <div style="font-size:1.8em;">&#x2705;</div>
+            <div><strong>結果</strong><br><small>メインの机は綺麗なまま</small></div>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <p>&#x1F4A1; <strong>使い所:</strong> 重い調査、セキュリティ監査、複数の作業を同時に並行して進めたい時</p>
+        </div>
+      </section>
+
+      <!-- Slide 8: Summary -->
+      <section>
+        <div class="section-num">8 / 8</div>
+        <h2>&#x1F3AF; まとめ 〜 AIで「仮想の会社」を構築する 〜</h2>
+        <p class="subtitle">Claude Codeの機能を組み合わせることで、あなたは「経営者」になれます。</p>
+
+        <div class="org-chart">
+          <div class="org-row">
+            <div class="org-item highlight">&#x1F468;&#x200D;&#x1F4BC; <strong>社長（あなた）</strong><br><small>やりたいことを指示する</small></div>
+          </div>
+          <div class="org-arrow">&#x25BC;</div>
+          <div class="org-row">
+            <div class="org-item" style="border-color: rgba(102,126,234,0.5);">&#x1F4D6; <strong>CLAUDE.md</strong><br><small>就業規則・ルール共有</small></div>
+          </div>
+          <div class="org-arrow">&#x25BC;</div>
+          <div class="org-row">
+            <div class="org-item" style="border-color: rgba(118,75,162,0.5);">&#x1F916; <strong>メインClaude</strong><br><small>優秀な秘書・マネージャー</small></div>
+          </div>
+          <div class="org-arrow">&#x25BC;</div>
+          <div class="org-row">
+            <div class="org-item" style="border-color: rgba(67,181,129,0.5);">&#x1F4CB; <strong>Skills</strong><br><small>定型業務マニュアル</small></div>
+            <div class="org-item" style="border-color: rgba(245,166,35,0.5);">&#x1F465; <strong>サブエージェント</strong><br><small>外部専門チーム</small></div>
+          </div>
+        </div>
+
+        <div class="tip-box" style="margin-top: 20px;">
+          <p>&#x1F31F; まずは「CLAUDE.md」でルールを決め、日々の定型業務を1つずつ「Skills」にしていくことから始めてみてください。少しずつあなたのAI組織が育ち、劇的な業務効率化が実現します！</p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      transition: 'slide',
+      backgroundTransition: 'fade',
+      width: 1200,
+      height: 700,
+      margin: 0.04,
+      center: true,
+    });
+  </script>
+</body>
+</html>
