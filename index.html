@@ -58,12 +58,14 @@
     .reveal .slides section {
       padding: 16px 36px;
       box-sizing: border-box;
-      height: 100%;
-      overflow: hidden;
     }
 
     .reveal .slides {
       text-align: center;
+    }
+
+    .reveal .slides section.present {
+      overflow: visible !important;
     }
 
     /* Title slide */
@@ -971,6 +973,30 @@ claude</code></pre>
       margin: 0.03,
       center: false,
     });
+
+    // Auto-shrink: scale down any slide whose content overflows
+    function autoShrinkSlides() {
+      const slides = document.querySelectorAll('.reveal .slides > section');
+      slides.forEach(function(slide) {
+        // Reset first
+        slide.style.transform = '';
+        slide.style.transformOrigin = 'top left';
+
+        const availH = 700; // reveal height
+        const contentH = slide.scrollHeight;
+
+        if (contentH > availH) {
+          const scale = (availH - 10) / contentH;
+          slide.style.transform = 'scale(' + scale + ')';
+          slide.style.transformOrigin = 'top left';
+          slide.style.width = (100 / scale) + '%';
+        }
+      });
+    }
+
+    Reveal.on('ready', autoShrinkSlides);
+    Reveal.on('slidechanged', autoShrinkSlides);
+    window.addEventListener('resize', autoShrinkSlides);
   </script>
 </body>
 </html>
