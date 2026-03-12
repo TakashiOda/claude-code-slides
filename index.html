@@ -410,7 +410,7 @@
 
       <!-- Slide 1: Claude Code vs Claude Cowork -->
       <section>
-        <div class="section-num">1 / 12</div>
+        <div class="section-num">1 / 15</div>
         <h2>&#x1F3E2; Claude Code と Claude Cowork の違い</h2>
         <p class="subtitle">「開発者向けの黒い画面」か、「誰でも使える便利アプリ」か</p>
         <div class="card-container">
@@ -429,7 +429,7 @@
 
       <!-- Slide 2: Code vs Cowork Comparison -->
       <section>
-        <div class="section-num">2 / 12</div>
+        <div class="section-num">2 / 15</div>
         <h2>&#x1F50D; できることの違いを徹底比較</h2>
         <p class="subtitle">同じClaudeファミリーでも「得意分野」がまったく異なります</p>
 
@@ -490,38 +490,159 @@
         </div>
       </section>
 
-      <!-- Slide 3: Setup -->
+      <!-- Slide 3: Mac Setup -->
       <section>
-        <div class="section-num">3 / 12</div>
-        <h2>&#x2699;&#xFE0F; 最初の準備と設定方法</h2>
-        <p class="subtitle">導入は驚くほど簡単。たった1行のコマンドで完了します。</p>
+        <div class="section-num">3 / 15</div>
+        <h2>&#x1F34E; Mac：セットアップ手順</h2>
+        <p class="subtitle">3ステップで完了します</p>
 
         <div class="warning-box">
           <p>&#x26A0;&#xFE0F; <strong>前提:</strong> Claudeの有料プラン（Pro, Maxなど）の契約が必要です。</p>
         </div>
 
-        <div class="card-container">
-          <div class="card blue">
-            <h3>&#x1F34E; Mac</h3>
-            <p>ターミナルを開き、以下をコピペしてEnter:</p>
-            <pre><code>curl -fsSL https://claude.com/install.sh | sh</code></pre>
-          </div>
-          <div class="card purple">
-            <h3>&#x1FA9F; Windows</h3>
-            <p>PowerShellを開き、以下をコピペしてEnter:</p>
-            <pre><code>iwr https://claude.com/install.ps1 -useb | iex</code></pre>
-            <p style="font-size:0.55em; color:#888;">※事前にGit for Windowsが必要です</p>
-          </div>
+        <div class="card blue" style="margin-top: 16px;">
+          <h3>Step 1：ターミナルを開く</h3>
+          <p><strong>Finder</strong> → <strong>アプリケーション</strong> → <strong>ユーティリティ</strong> → <strong>ターミナル.app</strong><br>
+          または、<code>Cmd + Space</code> で Spotlight を開き「ターミナル」と入力してEnter。</p>
         </div>
 
-        <div class="tip-box">
-          <p>&#x1F4A1; <strong>使い方:</strong> 作業したいフォルダを開き、<code>claude</code> と入力してEnter。初回のみブラウザでログイン認証が行われます。</p>
+        <div class="card blue" style="margin-top: 12px;">
+          <h3>Step 2：インストールコマンドを実行</h3>
+          <p>以下を丸ごとコピペしてEnterを押すだけ：</p>
+          <pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+        </div>
+
+        <div class="card blue" style="margin-top: 12px;">
+          <h3>Step 3：起動する</h3>
+          <p>作業したいフォルダに移動して <code>claude</code> と入力しEnter。初回のみブラウザが開いてログイン認証が行われます。</p>
+          <pre><code>cd ~/Desktop/my-project
+claude</code></pre>
         </div>
       </section>
 
-      <!-- Slide 4: Directory -->
+      <!-- Slide 4: Mac Troubleshooting -->
       <section>
-        <div class="section-num">4 / 12</div>
+        <div class="section-num">4 / 15</div>
+        <h2>&#x1F527; Mac：うまくいかない時は？</h2>
+        <p class="subtitle">よくあるトラブルと解決法</p>
+
+        <div class="usecase-grid">
+          <div class="usecase-card" style="border-left: 4px solid #e74c3c;">
+            <h3>&#x274C; 「command not found: curl」と出る</h3>
+            <ul>
+              <li><strong>原因:</strong> Xcode Command Line Tools が未インストール</li>
+              <li><strong>解決:</strong> 先に以下を実行してからやり直す</li>
+            </ul>
+            <pre><code>xcode-select --install</code></pre>
+          </div>
+          <div class="usecase-card" style="border-left: 4px solid #f5a623;">
+            <h3>&#x274C; 「Node.js is required」と出る</h3>
+            <ul>
+              <li><strong>原因:</strong> Node.js 18以上が入っていない</li>
+              <li><strong>確認:</strong> <code>node -v</code> でバージョンを確認</li>
+              <li><strong>解決:</strong> <a href="https://nodejs.org/" style="color:#667eea;">nodejs.org</a> からLTS版をインストール</li>
+            </ul>
+          </div>
+          <div class="usecase-card" style="border-left: 4px solid #9b59b6;">
+            <h3>&#x274C; 「Permission denied」と出る</h3>
+            <ul>
+              <li><strong>原因:</strong> インストール先への書き込み権限がない</li>
+              <li><strong>解決:</strong> コマンドの先頭に <code>sudo</code> を付けて再実行</li>
+            </ul>
+            <pre><code>sudo curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+          </div>
+          <div class="usecase-card" style="border-left: 4px solid #3498db;">
+            <h3>&#x274C; インストール後「command not found: claude」</h3>
+            <ul>
+              <li><strong>原因:</strong> PATHが通っていない（シェルが新しい設定を読めていない）</li>
+              <li><strong>解決:</strong> ターミナルを一度閉じて開き直す。または以下を実行：</li>
+            </ul>
+            <pre><code>source ~/.zshrc</code></pre>
+          </div>
+        </div>
+
+        <div class="tip-box" style="margin-top: 8px;">
+          <p>&#x1F4A1; 会社のPCで通信エラーが出る場合は、社内プロキシやファイアウォールが原因の可能性があります。情シス部門に相談してみてください。</p>
+        </div>
+      </section>
+
+      <!-- Slide 5: Windows Setup -->
+      <section>
+        <div class="section-num">5 / 15</div>
+        <h2>&#x1FA9F; Windows：セットアップ手順</h2>
+        <p class="subtitle">3ステップで完了します</p>
+
+        <div class="warning-box">
+          <p>&#x26A0;&#xFE0F; <strong>前提:</strong> Claudeの有料プラン（Pro, Maxなど）の契約 ＋ <strong>Git for Windows</strong> のインストールが必要です。</p>
+        </div>
+
+        <div class="card purple" style="margin-top: 16px;">
+          <h3>Step 1：PowerShellを開く</h3>
+          <p>画面左下の <strong>スタートボタン</strong> を右クリック → <strong>「Windows PowerShell」</strong> を選択。<br>
+          または、<code>Win + S</code> で検索を開き「PowerShell」と入力してEnter。</p>
+        </div>
+
+        <div class="card purple" style="margin-top: 12px;">
+          <h3>Step 2：インストールコマンドを実行</h3>
+          <p>以下を丸ごとコピペしてEnterを押すだけ：</p>
+          <pre><code>iwr https://claude.ai/install.ps1 -useb | iex</code></pre>
+        </div>
+
+        <div class="card purple" style="margin-top: 12px;">
+          <h3>Step 3：起動する</h3>
+          <p>作業したいフォルダに移動して <code>claude</code> と入力しEnter。初回のみブラウザが開いてログイン認証が行われます。</p>
+          <pre><code>cd C:\Users\YourName\Desktop\my-project
+claude</code></pre>
+        </div>
+      </section>
+
+      <!-- Slide 6: Windows Troubleshooting -->
+      <section>
+        <div class="section-num">6 / 15</div>
+        <h2>&#x1F527; Windows：うまくいかない時は？</h2>
+        <p class="subtitle">よくあるトラブルと解決法</p>
+
+        <div class="usecase-grid">
+          <div class="usecase-card" style="border-left: 4px solid #e74c3c;">
+            <h3>&#x274C; 「スクリプトの実行が無効」と出る</h3>
+            <ul>
+              <li><strong>原因:</strong> PowerShellの実行ポリシーでスクリプトがブロックされている</li>
+              <li><strong>解決:</strong> PowerShellを<strong>管理者として実行</strong>し、以下を先に実行：</li>
+            </ul>
+            <pre><code>Set-ExecutionPolicy RemoteSigned -Scope CurrentUser</code></pre>
+          </div>
+          <div class="usecase-card" style="border-left: 4px solid #f5a623;">
+            <h3>&#x274C; 「Node.js is required」と出る</h3>
+            <ul>
+              <li><strong>原因:</strong> Node.js 18以上が入っていない</li>
+              <li><strong>確認:</strong> <code>node -v</code> でバージョンを確認</li>
+              <li><strong>解決:</strong> <a href="https://nodejs.org/" style="color:#764ba2;">nodejs.org</a> からLTS版をインストール</li>
+            </ul>
+          </div>
+          <div class="usecase-card" style="border-left: 4px solid #9b59b6;">
+            <h3>&#x274C; 「git が認識されません」と出る</h3>
+            <ul>
+              <li><strong>原因:</strong> Git for Windowsが未インストール</li>
+              <li><strong>解決:</strong> <a href="https://gitforwindows.org/" style="color:#764ba2;">gitforwindows.org</a> からインストール後、PowerShellを再起動</li>
+            </ul>
+          </div>
+          <div class="usecase-card" style="border-left: 4px solid #3498db;">
+            <h3>&#x274C; インストール後「claude は認識されません」</h3>
+            <ul>
+              <li><strong>原因:</strong> PATHが通っていない</li>
+              <li><strong>解決:</strong> PowerShellを一度閉じて開き直す。それでもダメなら<strong>PCを再起動</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tip-box" style="margin-top: 8px;">
+          <p>&#x1F4A1; 会社のPCで通信エラーが出る場合は、社内プロキシやファイアウォールが原因の可能性があります。情シス部門に相談してみてください。</p>
+        </div>
+      </section>
+
+      <!-- Slide 7: Directory -->
+      <section>
+        <div class="section-num">7 / 15</div>
         <h2>&#x1F4C1; ディレクトリ（フォルダ）の考え方</h2>
         <p class="subtitle">Claude Codeは「呼ばれた場所」で働きます。設定の有効範囲を理解しましょう。</p>
 
@@ -541,7 +662,7 @@
 
       <!-- Slide 4: Context -->
       <section>
-        <div class="section-num">5 / 12</div>
+        <div class="section-num">8 / 15</div>
         <h2>&#x1F9E0; コンテキストとは？（超重要）</h2>
         <p class="subtitle">AIが効率よく働くための「作業机の広さ」のことです。</p>
 
@@ -564,7 +685,7 @@
 
       <!-- Slide 5: CLAUDE.md -->
       <section>
-        <div class="section-num">6 / 12</div>
+        <div class="section-num">9 / 15</div>
         <h2>&#x1F4D6; CLAUDE.md とは？</h2>
         <p class="subtitle">配属初日の新入社員（Claude）に渡す「会社の就業規則・理念」です。</p>
 
@@ -588,7 +709,7 @@
 
       <!-- Slide 6: Skills -->
       <section>
-        <div class="section-num">7 / 12</div>
+        <div class="section-num">10 / 15</div>
         <h2>&#x1F4CB; Skills（スキル）とは？</h2>
         <p class="subtitle">作業机の引き出しに入っている「定型業務の手順書（マニュアル）」です。</p>
 
@@ -614,7 +735,7 @@
 
       <!-- Slide 7: Subagents -->
       <section>
-        <div class="section-num">8 / 12</div>
+        <div class="section-num">11 / 15</div>
         <h2>&#x1F465; サブエージェント（Subagents）とは？</h2>
         <p class="subtitle">社長（メインのClaude）が仕事を外注する「別室の専門家・コンサルタント」です。</p>
 
@@ -646,7 +767,7 @@
 
       <!-- Slide 8: Use Cases 1 -->
       <section>
-        <div class="section-num">9 / 12</div>
+        <div class="section-num">12 / 15</div>
         <h2>&#x1F4BC; 業種別 活用アイデア（1）</h2>
         <p class="subtitle">あなたの業界ではこんな使い方ができます</p>
 
@@ -692,7 +813,7 @@
 
       <!-- Slide 9: Use Cases 2 -->
       <section>
-        <div class="section-num">10 / 12</div>
+        <div class="section-num">13 / 15</div>
         <h2>&#x1F4BC; 業種別 活用アイデア（2）</h2>
         <p class="subtitle">非エンジニア職でもここまでできる</p>
 
@@ -738,7 +859,7 @@
 
       <!-- Slide 10: Use Cases 3 -->
       <section>
-        <div class="section-num">11 / 12</div>
+        <div class="section-num">14 / 15</div>
         <h2>&#x1F4BC; 業種別 活用アイデア（3）</h2>
         <p class="subtitle">バックオフィスこそAIの効果が出やすい領域</p>
 
@@ -784,7 +905,7 @@
 
       <!-- Slide 11: Summary -->
       <section>
-        <div class="section-num">12 / 12</div>
+        <div class="section-num">15 / 15</div>
         <h2>&#x1F3AF; まとめ 〜 AIで「仮想の会社」を構築する 〜</h2>
         <p class="subtitle">Claude Codeの機能を組み合わせることで、あなたは「経営者」になれます。</p>
 
