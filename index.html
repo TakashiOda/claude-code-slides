@@ -33,8 +33,8 @@
     }
 
     .reveal h2 {
-      font-size: 1.3em;
-      margin-bottom: 0.6em;
+      font-size: 1.2em;
+      margin-bottom: 0.4em;
     }
 
     .reveal h3 {
@@ -42,8 +42,8 @@
     }
 
     .reveal p, .reveal li {
-      font-size: 0.7em;
-      line-height: 1.6;
+      font-size: 0.65em;
+      line-height: 1.5;
       text-align: left;
     }
 
@@ -56,7 +56,14 @@
     }
 
     .reveal .slides section {
-      padding: 20px 40px;
+      padding: 16px 36px;
+      box-sizing: border-box;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .reveal .slides {
+      text-align: center;
     }
 
     /* Title slide */
@@ -76,29 +83,36 @@
       color: #aaa;
     }
 
+    .title-slide {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
     /* Card layout */
     .card-container {
       display: flex;
-      gap: 24px;
-      margin-top: 20px;
+      gap: 16px;
+      margin-top: 12px;
     }
 
     .card {
       flex: 1;
       background: rgba(255, 255, 255, 0.05);
-      border-radius: 16px;
-      padding: 24px;
+      border-radius: 14px;
+      padding: 16px 18px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       text-align: left;
     }
 
     .card h3 {
-      margin-bottom: 0.4em;
-      font-size: 0.9em;
+      margin-bottom: 0.3em;
+      font-size: 0.85em;
     }
 
     .card p, .card li {
-      font-size: 0.6em;
+      font-size: 0.55em;
       color: #ccc;
     }
 
@@ -126,55 +140,55 @@
     .highlight-box {
       background: rgba(102, 126, 234, 0.15);
       border: 1px solid rgba(102, 126, 234, 0.3);
-      border-radius: 12px;
-      padding: 16px 24px;
-      margin: 16px 0;
+      border-radius: 10px;
+      padding: 10px 18px;
+      margin: 10px 0;
       text-align: left;
     }
 
     .highlight-box p {
-      font-size: 0.65em;
-      margin: 0.2em 0;
+      font-size: 0.58em;
+      margin: 0.15em 0;
     }
 
     .warning-box {
       background: rgba(245, 166, 35, 0.15);
       border: 1px solid rgba(245, 166, 35, 0.3);
-      border-radius: 12px;
-      padding: 16px 24px;
-      margin: 16px 0;
+      border-radius: 10px;
+      padding: 10px 18px;
+      margin: 10px 0;
       text-align: left;
     }
 
     .warning-box p, .warning-box li {
-      font-size: 0.65em;
-      margin: 0.2em 0;
+      font-size: 0.58em;
+      margin: 0.15em 0;
     }
 
     .tip-box {
       background: rgba(67, 181, 129, 0.15);
       border: 1px solid rgba(67, 181, 129, 0.3);
-      border-radius: 12px;
-      padding: 16px 24px;
-      margin: 16px 0;
+      border-radius: 10px;
+      padding: 10px 18px;
+      margin: 10px 0;
       text-align: left;
     }
 
     .tip-box p {
-      font-size: 0.65em;
-      margin: 0.2em 0;
+      font-size: 0.58em;
+      margin: 0.15em 0;
     }
 
     /* Code block */
     .reveal pre {
       width: 100%;
-      margin: 12px 0;
+      margin: 6px 0;
     }
 
     .reveal pre code {
-      font-size: 0.75em;
-      padding: 16px 20px;
-      border-radius: 10px;
+      font-size: 0.7em;
+      padding: 10px 16px;
+      border-radius: 8px;
       background: rgba(0, 0, 0, 0.5);
     }
 
@@ -187,9 +201,9 @@
     /* Subtitle */
     .subtitle {
       color: #aaa;
-      font-size: 0.65em !important;
+      font-size: 0.6em !important;
       text-align: center !important;
-      margin-bottom: 1em;
+      margin-bottom: 0.6em;
     }
 
     /* Section number */
@@ -245,33 +259,42 @@
     .usecase-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 16px;
+      gap: 10px;
+      margin-top: 10px;
     }
 
     .usecase-card {
       background: rgba(255, 255, 255, 0.05);
-      border-radius: 14px;
-      padding: 18px 20px;
+      border-radius: 12px;
+      padding: 12px 14px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       text-align: left;
     }
 
     .usecase-card h3 {
-      font-size: 0.8em;
-      margin-bottom: 0.3em;
+      font-size: 0.72em;
+      margin-bottom: 0.2em;
     }
 
     .usecase-card ul {
       margin: 0;
-      padding-left: 1.2em;
+      padding-left: 1.1em;
     }
 
     .usecase-card li {
-      font-size: 0.55em;
+      font-size: 0.5em;
       color: #ccc;
-      margin-bottom: 0.15em;
-      line-height: 1.5;
+      margin-bottom: 0.1em;
+      line-height: 1.4;
+    }
+
+    .usecase-card pre {
+      margin: 4px 0 0 0;
+    }
+
+    .usecase-card pre code {
+      font-size: 0.65em;
+      padding: 6px 10px;
     }
 
     /* Footer */
@@ -288,16 +311,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
-      margin: 20px 0;
+      gap: 12px;
+      margin: 12px 0;
     }
 
     .diagram-box {
       background: rgba(255, 255, 255, 0.07);
-      border-radius: 12px;
-      padding: 16px 20px;
+      border-radius: 10px;
+      padding: 12px 16px;
       text-align: center;
-      font-size: 0.6em;
+      font-size: 0.55em;
       border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
@@ -318,10 +341,10 @@
     }
 
     .compare-table th {
-      padding: 10px 14px;
+      padding: 7px 10px;
       text-align: center;
       font-weight: 700;
-      font-size: 1.05em;
+      font-size: 0.95em;
     }
 
     .compare-table th:first-child {
@@ -342,11 +365,11 @@
     }
 
     .compare-table td {
-      padding: 8px 14px;
+      padding: 5px 10px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       vertical-align: top;
       text-align: left;
-      line-height: 1.5;
+      line-height: 1.4;
     }
 
     .compare-table tr:last-child td {
@@ -500,19 +523,19 @@
           <p>&#x26A0;&#xFE0F; <strong>前提:</strong> Claudeの有料プラン（Pro, Maxなど）の契約が必要です。</p>
         </div>
 
-        <div class="card blue" style="margin-top: 16px;">
+        <div class="card blue" style="margin-top: 10px;">
           <h3>Step 1：ターミナルを開く</h3>
           <p><strong>Finder</strong> → <strong>アプリケーション</strong> → <strong>ユーティリティ</strong> → <strong>ターミナル.app</strong><br>
           または、<code>Cmd + Space</code> で Spotlight を開き「ターミナル」と入力してEnter。</p>
         </div>
 
-        <div class="card blue" style="margin-top: 12px;">
+        <div class="card blue" style="margin-top: 8px;">
           <h3>Step 2：インストールコマンドを実行</h3>
           <p>以下を丸ごとコピペしてEnterを押すだけ：</p>
           <pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
         </div>
 
-        <div class="card blue" style="margin-top: 12px;">
+        <div class="card blue" style="margin-top: 8px;">
           <h3>Step 3：起動する</h3>
           <p>作業したいフォルダに移動して <code>claude</code> と入力しEnter。初回のみブラウザが開いてログイン認証が行われます。</p>
           <pre><code>cd ~/Desktop/my-project
@@ -576,19 +599,19 @@ claude</code></pre>
           <p>&#x26A0;&#xFE0F; <strong>前提:</strong> Claudeの有料プラン（Pro, Maxなど）の契約 ＋ <strong>Git for Windows</strong> のインストールが必要です。</p>
         </div>
 
-        <div class="card purple" style="margin-top: 16px;">
+        <div class="card purple" style="margin-top: 10px;">
           <h3>Step 1：PowerShellを開く</h3>
           <p>画面左下の <strong>スタートボタン</strong> を右クリック → <strong>「Windows PowerShell」</strong> を選択。<br>
           または、<code>Win + S</code> で検索を開き「PowerShell」と入力してEnter。</p>
         </div>
 
-        <div class="card purple" style="margin-top: 12px;">
+        <div class="card purple" style="margin-top: 8px;">
           <h3>Step 2：インストールコマンドを実行</h3>
           <p>以下を丸ごとコピペしてEnterを押すだけ：</p>
           <pre><code>iwr https://claude.ai/install.ps1 -useb | iex</code></pre>
         </div>
 
-        <div class="card purple" style="margin-top: 12px;">
+        <div class="card purple" style="margin-top: 8px;">
           <h3>Step 3：起動する</h3>
           <p>作業したいフォルダに移動して <code>claude</code> と入力しEnter。初回のみブラウザが開いてログイン認証が行われます。</p>
           <pre><code>cd C:\Users\YourName\Desktop\my-project
@@ -693,7 +716,7 @@ claude</code></pre>
           <p>&#x1F4CB; プロジェクトのフォルダ直下に置く <code>CLAUDE.md</code> というテキストファイル。<br>Claudeは作業開始前に、<strong>必ず毎回</strong>このファイルを読み込みます。</p>
         </div>
 
-        <div class="card green" style="margin-top: 16px;">
+        <div class="card green" style="margin-top: 10px;">
           <h3>&#x270D;&#xFE0F; 書くべきこと</h3>
           <ul>
             <li>このプロジェクトの目的（What）</li>
@@ -928,7 +951,7 @@ claude</code></pre>
           </div>
         </div>
 
-        <div class="tip-box" style="margin-top: 12px;">
+        <div class="tip-box" style="margin-top: 8px;">
           <p>&#x1F31F; まずは「CLAUDE.md」でルールを決め、日々の定型業務を1つずつ「Skills」にしていくことから始めましょう。少しずつあなたのAI組織が育ち、劇的な業務効率化が実現します！</p>
         </div>
       </section>
@@ -945,8 +968,8 @@ claude</code></pre>
       backgroundTransition: 'fade',
       width: 1200,
       height: 700,
-      margin: 0.04,
-      center: true,
+      margin: 0.03,
+      center: false,
     });
   </script>
 </body>
